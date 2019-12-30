@@ -65,12 +65,7 @@ syspit() {
 	register struct node *b, *c, *d;
 	int a;
 
-	if((a=getchar()) == '\0'){
-		close(fin);
-		fin = 0;
-		a = getchar();
-	}
-	if(a == '\n')
+	if ((a=getchar())=='\n')
 		return(0);
 	b = c = alloc();
 	while(a != '\n') {
