@@ -139,7 +139,7 @@ badv1:
 	}
 	goto badvanc;
 
-retard:
+foo:
 	a = back->p1;
 	if (a == 0) {
 		rfail = 1;
@@ -151,14 +151,14 @@ retard:
 	str = var->p1;
 	etc = var->p2;
 	if (etc->p2)
-		goto retard;
+		goto foo;
 	if (var->typ == 1) {
 		if (bextend (str, last) == 0)
-			goto retard;
+			goto foo;
 		goto adv0;
 	}
 	if (ubextend (str, last) == 0)
-		goto retard;
+		goto foo;
 adv0:
 	a = str->p2;
 adv01:
@@ -198,17 +198,17 @@ adv1:
 		if (var == 0)
 			goto advanc;
 		if (next == 0)
-			goto retard;
+			goto foo;
 		a = next;
 		b = var->p1;
 		e = var->p2;
 		while (1) {
 			if (a->ch != b->ch)
-				goto retard;
+				goto foo;
 			if (b == e)
 				goto adv01;
 			if (a == last)
-				goto retard;
+				goto foo;
 			a = a->p1;
 			b = b->p1;
 		}
@@ -221,7 +221,7 @@ adv1:
 	if (var->typ == 1) {
 		d = bextend (str, last);
 		if (d == 0)
-			goto retard;
+			goto foo;
 		if (c == 0)
 			goto adv0;
 		while (1) {
@@ -229,10 +229,10 @@ adv1:
 			if (c == 0)
 				goto adv0;
 			if (c < 0)
-				goto retard;
+				goto foo;
 			d = bextend (str, last);
 			if (d == 0)
-				goto retard;
+				goto foo;
 		}
 	}
 	if (c == 0) {
@@ -244,7 +244,7 @@ adv1:
 	}
 	while (c--)
 		if (ubextend (str, last) == 0)
-			goto retard;
+			goto foo;
 	goto adv0;
 
 fail:
