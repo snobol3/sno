@@ -1,5 +1,6 @@
 /*	@(#)sno1.c	1.2	*/
 #include "sno.h"
+#include <stdlib.h>
 #define INCR 200
 
 /*
@@ -26,11 +27,8 @@ FILE	*fin;
 int	xargc;
 char	**xargv;
 
-char *malloc();
-
 struct node *
-init (s, t)
-	char *s;
+init (char *s, int t)
 {
 	register struct node *a, *b;
 
@@ -41,8 +39,7 @@ init (s, t)
 	return (b);
 }
 
-main (argc, argv)
-	char *argv[];
+int main (int argc, char *argv[])
 {
 	register struct node *a, *b, *c;
 	static char stdbuf[BUFSIZ];
@@ -105,8 +102,7 @@ syspit()
 	return (b);
 }
 
-syspot (string)
-	struct node *string;
+void syspot (struct node *string)
 {
 	register struct node *a, *b, *s;
 
@@ -139,7 +135,7 @@ strst1 (s)
 	return (d);
 }
 
-class (c)
+int class (int c)
 {
 	switch (c) {
 		case ')':  return (1);
@@ -181,8 +177,7 @@ salloc()
 	return (f);
 }
 
-sfree (pointer)
-	struct node *pointer;
+void sfree (struct node *pointer)
 {
 	pointer->p1 = freelist;
 	freelist = pointer;
@@ -321,7 +316,7 @@ loop:
 }
 
 struct node *
-binstr (binary)
+binstr (int binary)
 {
 	int n, sign;
 	register struct node *m, *p, *q;
@@ -376,7 +371,7 @@ mult (string1, string2)
 }
 
 struct node *
-div (string1, string2)
+sdiv (string1, string2)
 	register struct node *string1, *string2;
 {
 	return (binstr (strbin (string1) / strbin (string2)));
@@ -412,8 +407,7 @@ dcat (a,b)
 	return (c);
 }
 
-delete (string)
-	struct node *string;
+void delete (struct node *string)
 {
 	register struct node *a, *b, *c;
 
@@ -429,20 +423,18 @@ delete (string)
 	sfree (a);
 }
 
-sysput (string)
-	struct node *string;
+void sysput (struct node *string)
 {
 	syspot (string);
 	delete (string);
 }
 
-dump()
+void dump(void)
 {
 	dump1 (namelist);
 }
 
-dump1 (base)
-	struct node *base;
+void dump1 (struct node *base)
 {
 	register struct node *b, *c, *e;
 	struct node *d;
@@ -463,8 +455,7 @@ dump1 (base)
 	}
 }
 
-writes (s)
-	char *s;
+void writes (char *s)
 {
 	sysput (dcat (binstr (lc),dcat (strst1 ("\t"),strst1 (s))));
 	fflush (stdout);
@@ -484,7 +475,7 @@ sgetc()
 {
 	register struct node *a;
 	static struct node *line;
-	static linflg;
+	static int linflg;
 
 	while (line==0) {
 		line = syspit();
@@ -508,16 +499,14 @@ sgetc()
 	return (a);
 }
 
-ncinit (argc, argv)
-	int argc;
-	char *argv[];
+void ncinit (int argc, char *argv[])
 {
 	xargc = argc - 1;
 	xargv = argv + 1;
 	ncswitch();
 }
 
-ncswitch()
+void ncswitch(void)
 {
 	if (fin && fin != stdin)
 		fclose (fin);

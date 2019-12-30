@@ -81,7 +81,7 @@ search (arg, r)
 	struct node *list, *back, *str,
 		*etc, *next, *last, *base, *e;
 	register struct node *a, *b, *var;
-	int c, d;
+	int c, d, etcp2c=0;
 
 	a = arg->p2;
 	list = base = salloc();
@@ -134,7 +134,7 @@ badv1:
 		etc->p2 = 0;
 	else {
 		e = eval (e, 1);
-		etc->p2 = (struct node *) strbin (e);
+		etcp2c = strbin (e);
 		delete (e);
 	}
 	goto badvanc;
@@ -217,7 +217,7 @@ adv1:
 	etc = var->p2;
 	str->p1 = next;
 	str->p2 = 0;
-	c = (int) etc->p2;
+	c = etcp2c;
 	if (var->typ == 1) {
 		d = bextend (str, last);
 		if (d == 0)

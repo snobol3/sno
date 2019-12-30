@@ -6,7 +6,7 @@ compon()
 {
 	register struct node *a, *b;
 	register int c;
-	static next;
+	static int next;
 
 	if (next == 0)
 		schar = sgetc();
@@ -140,8 +140,7 @@ nscomp()
 }
 
 struct node *
-push (stack)
-	struct node *stack;
+push (struct node *stack)
 {
 	register struct node *a;
 
@@ -150,8 +149,7 @@ push (stack)
 }
 
 struct node *
-pop (stack)
-	struct node *stack;
+pop (struct node *stack)
 {
 	register struct node *a, *s;
 
@@ -164,8 +162,7 @@ pop (stack)
 }
 
 struct node *
-expr (start, eof, e)
-	struct node *start, *e;
+expr (struct node *start, int eof, struct node *e)
 {
 	register struct node *stack, *list, *comp, *space;
 	int operand, op, op1;

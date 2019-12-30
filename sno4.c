@@ -38,11 +38,11 @@ and (ptr)
 }
 
 struct node *
-eval (e, t)
-	struct node *e;
+eval (struct node *e, int t)
 {
 	struct node *list, *a2, *a3, *a4, *a3base;
 	register struct node *a1, *stack, *op;
+	int l3typ = 0;
 
 	if (rfail == 1)
 		return (0);
@@ -136,22 +136,21 @@ l1:
 		goto advanc;
 	case 15:
 		a1 = copy (list->p2);
-		a2 = (struct node *) 1;
+		l3typ = 1;
 		goto l3;
 	case 14:
 		a1 = list->p2;
-		a2 = 0;
+		l3typ = 0;
 	l3:
 		stack = push (stack);
 		stack->p1 = a1;
-		stack->typ = (int) a2;
+		stack->typ = l3typ;
 		goto advanc;
 	}
 }
 
 struct node *
-doop (op, arg1, arg2)
-	struct node *arg1, *arg2;
+doop (int op, struct node *arg1, struct node *arg2)
 {
 	register struct node *a1, *a2;
 
@@ -160,7 +159,7 @@ doop (op, arg1, arg2)
 	switch (op) {
 
 	case 11:
-		return (div (a1, a2));
+		return (sdiv (a1, a2));
 	case 10:
 		return (mult (a1, a2));
 	case 8:
@@ -255,8 +254,7 @@ xboth:
 	return (b->p2);
 }
 
-assign (adr, val)
-	struct node *adr, *val;
+void assign (struct node *adr, struct node *val)
 {
 	register struct node *a, *addr, *value;
 
