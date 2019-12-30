@@ -6,8 +6,7 @@
 
 
 struct node *
-and (ptr)
-	struct node *ptr;
+and (struct node *ptr)
 {
 	register struct node *a, *p;
 
@@ -256,7 +255,8 @@ xboth:
 	return (b->p2);
 }
 
-void assign (struct node *adr, struct node *val)
+void
+assign (struct node *adr, struct node *val)
 {
 	register struct node *a, *addr, *value;
 

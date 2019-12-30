@@ -39,7 +39,8 @@ init (char *s, int t)
 	return (b);
 }
 
-int main (int argc, char *argv[])
+int
+main (int argc, char *argv[])
 {
 	register struct node *a, *b, *c;
 	static char stdbuf[BUFSIZ];
@@ -72,7 +73,7 @@ int main (int argc, char *argv[])
 }
 
 struct node *
-syspit()
+syspit (void)
 {
 	register struct node *b, *c, *d;
 	int a;
@@ -104,7 +105,8 @@ syspit()
 	return (b);
 }
 
-void syspot (struct node *string)
+void
+syspot (struct node *string)
 {
 	register struct node *a, *b, *s;
 
@@ -137,7 +139,8 @@ strst1 (char s[])
 	return (d);
 }
 
-int class (int c)
+int
+class (int c)
 {
 	switch (c) {
 		case ')':  return (1);
@@ -158,7 +161,7 @@ int class (int c)
 }
 
 struct node *
-salloc()
+salloc (void)
 {
 	register struct node *f;
 	register char *i;
@@ -179,14 +182,15 @@ salloc()
 	return (f);
 }
 
-void sfree (struct node *pointer)
+void
+sfree (struct node *pointer)
 {
 	pointer->p1 = freelist;
 	freelist = pointer;
 }
 
 int
-nfree()
+nfree (void)
 {
 	register int i;
 	register struct node *a;
@@ -201,8 +205,7 @@ nfree()
 }
 
 struct node *
-look (string)
-	struct node *string;
+look (struct node *string)
 {
 	register struct node *i, *j, *k;
 
@@ -229,8 +232,7 @@ look (string)
 }
 
 struct node *
-copy (string)
-	struct node *string;
+copy (struct node *string)
 {
 	register struct node *j, *l, *m;
 	struct node *i, *k;
@@ -251,8 +253,7 @@ copy (string)
 }
 
 int
-equal (string1, string2)
-	struct node *string1, *string2;
+equal (struct node *string1, struct node *string2)
 {
 	register struct node *i, *j, *k;
 	struct node *l;
@@ -287,8 +288,7 @@ equal (string1, string2)
 }
 
 int
-strbin (string)
-	struct node *string;
+strbin (struct node *string)
 {
 	int n, m, sign;
 	register struct node *p, *q, *s;
@@ -352,36 +352,31 @@ loop:
 }
 
 struct node *
-add (string1, string2)
-	register struct node *string1, *string2;
+add (register struct node *string1, register struct node *string2)
 {
 	return (binstr (strbin (string1) + strbin (string2)));
 }
 
 struct node *
-sub (string1, string2)
-	register struct node *string1, *string2;
+sub (register struct node *string1, register struct node *string2)
 {
 	return (binstr (strbin (string1) - strbin (string2)));
 }
 
 struct node *
-mult (string1, string2)
-	register struct node *string1, *string2;
+mult (register struct node *string1, register struct node *string2)
 {
 	return (binstr (strbin (string1) * strbin (string2)));
 }
 
 struct node *
-sdiv (string1, string2)
-	register struct node *string1, *string2;
+sdiv (register struct node *string1, register struct node *string2)
 {
 	return (binstr (strbin (string1) / strbin (string2)));
 }
 
 struct node *
-cat (string1, string2) 
-	struct node *string1, *string2;
+cat (struct node *string1, struct node *string2) 
 {
 	register struct node *a, *b;
 
@@ -398,8 +393,7 @@ cat (string1, string2)
 }
 
 struct node *
-dcat (a,b)
-	struct node *a, *b;
+dcat (struct node *a, struct node *b)
 {
 	register struct node *c;
 
@@ -409,7 +403,8 @@ dcat (a,b)
 	return (c);
 }
 
-void delete (struct node *string)
+void
+delete (struct node *string)
 {
 	register struct node *a, *b, *c;
 
@@ -425,18 +420,21 @@ void delete (struct node *string)
 	sfree (a);
 }
 
-void sysput (struct node *string)
+void
+sysput (struct node *string)
 {
 	syspot (string);
 	delete (string);
 }
 
-void dump(void)
+void
+dump (void)
 {
 	dump1 (namelist);
 }
 
-void dump1 (struct node *base)
+void
+dump1 (struct node *base)
 {
 	register struct node *b, *c, *e;
 	struct node *d;
@@ -457,7 +455,8 @@ void dump1 (struct node *base)
 	}
 }
 
-void writes (char *s)
+void
+writes (char *s)
 {
 	sysput (dcat (binstr (lc),dcat (strst1 ("\t"),strst1 (s))));
 	fflush (stdout);
@@ -473,7 +472,7 @@ void writes (char *s)
 }
 
 struct node *
-sgetc()
+sgetc(void)
 {
 	register struct node *a;
 	static struct node *line;
@@ -501,14 +500,16 @@ sgetc()
 	return (a);
 }
 
-void ncinit (int argc, char *argv[])
+void
+ncinit (int argc, char *argv[])
 {
 	xargc = argc - 1;
 	xargv = argv + 1;
 	ncswitch();
 }
 
-void ncswitch(void)
+void
+ncswitch(void)
 {
 	if (fin && fin != stdin)
 		fclose (fin);
@@ -527,7 +528,7 @@ void ncswitch(void)
 }
 
 char
-nextchar()
+nextchar(void)
 {
 	register int a;
 

@@ -2,7 +2,7 @@
 #include "sno.h"
 
 struct node *
-compon(void)
+compon (void)
 {
 	register struct node *a, *b;
 	register int c;
@@ -132,7 +132,7 @@ compon(void)
 }
 
 struct node *
-nscomp()
+nscomp (void)
 {
 	register struct node *c;
 
@@ -297,8 +297,7 @@ l6:
 }
 
 struct node *
-match (start, m)
-	struct node *start, *m;
+match (struct node *start, struct node *m)
 {
 	register struct node *list, *comp, *term;
 	struct node *a;
@@ -385,7 +384,7 @@ merr:
 }
 
 struct node *
-compile()
+compile(void)
 {
 	register struct node *b, *comp;
 	struct node *m, *r, *l, *xs, *xf, *g, *as;
