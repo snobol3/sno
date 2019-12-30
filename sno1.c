@@ -67,6 +67,8 @@ int main (int argc, char *argv[])
 		c = lookstart->p2;
 	incomp = 0;
 	while ((c=execute (c)));
+
+	return 0;
 }
 
 struct node *
