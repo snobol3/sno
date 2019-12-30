@@ -1,0 +1,6 @@
+	LINE.1 = "I felt a Funeral, in my Brain,"
+	LINE.2 = "And Mourners to and fro"
+	LINE.3 = "Kept treading - treading - till it seemed"
+	LINE.4 = "That Sense was breaking through -"
+	TEXT = LINE.1 "/" LINE.2 "/" LINE.3 "/" LINE.4
+end	syspot = TEXT

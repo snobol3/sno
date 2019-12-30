@@ -1,0 +1,3 @@
+	X = "42"
+	Y = "7"
+end	syspot = X + Y "/" X - Y "/" X * Y "/" X / Y

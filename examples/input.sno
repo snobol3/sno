@@ -1,0 +1,5 @@
+	syspot = "Enter a number"
+	x = syspit
+	syspot = "Enter another number"
+	y = syspit
+end	syspot = "The sum of " x " and " y " is " x + y
