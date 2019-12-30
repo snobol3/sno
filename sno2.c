@@ -2,11 +2,13 @@
 #include "sno.h"
 
 struct node *
-compon()
+compon(void)
 {
 	register struct node *a, *b;
 	register int c;
 	static int next;
+
+	b = NULL;
 
 	if (next == 0)
 		schar = sgetc();

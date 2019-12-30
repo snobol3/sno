@@ -1,4 +1,4 @@
-CFLAGS = -O2
+CFLAGS = -O2 -Wall
 OBJS = sno1.o sno2.o sno3.o sno4.o
 
 sno:	$(OBJS)

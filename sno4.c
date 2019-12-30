@@ -173,12 +173,12 @@ doop (int op, struct node *arg1, struct node *arg2)
 }
 
 struct node *
-execute (e)
-	struct node *e;
+execute (struct node *e)
 {
 	register struct node *r, *b, *c;
 	struct node *m, *ca, *d, *a;
 
+	a = b = NULL;
 	r = e->p2;
 	lc = e->ch;
 	switch (e->typ) {
@@ -237,7 +237,9 @@ xsuc:
 	goto xboth;
 xfail:
 	rfail = 0;
-	b = a->p2;
+	if (a != NULL) {
+		b = a->p2;
+	}
 xboth:
 	if (b == 0) {
 		return (e->p1);

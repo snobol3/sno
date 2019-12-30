@@ -66,7 +66,7 @@ int main (int argc, char *argv[])
 	if (lookstart->typ == 2)
 		c = lookstart->p2;
 	incomp = 0;
-	while (c=execute (c));
+	while ((c=execute (c)));
 }
 
 struct node *
@@ -119,12 +119,12 @@ void syspot (struct node *string)
 }
 
 struct node *
-strst1 (s)
-	char s[];
+strst1 (char s[])
 {
 	int c;
 	register struct node *e, *f, *d;
 
+	e = NULL;
 	d = f = salloc();
 	while ((c = *s++)!='\0') {
 		(e=salloc())->ch = c;
