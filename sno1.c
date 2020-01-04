@@ -27,6 +27,11 @@ FILE	*fin;
 int	xargc;
 char	**xargv;
 
+/*
+ * struct node *init(char *s, int t)
+ *
+ * initializes built-ins like start, end, syspit, syspot, etc
+ */
 struct node *
 init (char *s, int t)
 {
@@ -39,6 +44,11 @@ init (char *s, int t)
 	return (b);
 }
 
+/*
+ * int main(int argc, char *argv[])
+ *
+ * initializes the environment, compiles the input, and executes the program(s)
+ */
 int
 main (int argc, char *argv[])
 {
@@ -72,6 +82,11 @@ main (int argc, char *argv[])
 	return 0;
 }
 
+/*
+ * struct node *syspit(void)
+ *
+ * read a line of input, skipping comment lines
+ */
 struct node *
 syspit (void)
 {
@@ -105,6 +120,11 @@ syspit (void)
 	return (b);
 }
 
+/*
+ * void syspot(struct node *string)
+ *
+ * output a string followed by a newline
+ */
 void
 syspot (struct node *string)
 {
@@ -139,6 +159,11 @@ strst1 (char s[])
 	return (d);
 }
 
+/*
+ * int class(int c)
+ *
+ * classifies input characters
+ */
 int
 class (int c)
 {
@@ -500,6 +525,12 @@ sgetc(void)
 	return (a);
 }
 
+/*
+ * void ncinit(int argc, char *argv[])
+ *
+ * set xargc and xargv to point after argv[0]
+ * call ncswitch to select the first input stream
+ */
 void
 ncinit (int argc, char *argv[])
 {
@@ -508,6 +539,13 @@ ncinit (int argc, char *argv[])
 	ncswitch();
 }
 
+/*
+ * void ncswitch(void)
+ *
+ * closes the input stream fin if not pointed at stdin
+ * and opens any remaining files specified on the command line
+ * when out of files to load, point fin at stdin
+ */
 void
 ncswitch(void)
 {
@@ -527,6 +565,12 @@ ncswitch(void)
 		fin = stdin;
 }
 
+/*
+ * char nextchar(void)
+ *
+ * reads the next character from the input stream fin.
+ * attempts to move on to the next stream when EOF is encountered.
+ */
 char
 nextchar(void)
 {
